@@ -6,17 +6,22 @@ Result
 {% endblock %}
 
 {% block content %}
+<div class="container border-bottom border-light">
+    <div class="col-md-2 mx-auto d-block mb-2">
+        <img src="{{ image_path }}" class="img-fluid rounded" alt="Responsive image">
+    </div>
+</div>
 <div class="container">
   <div class="row mx-1 my-2">
     {% for a in range(5) %}
-    <div class="itile-{{ a }} col-sm card text-white text-center p-5 mx-1" style="background-color:{{hex_palette[a]}}">
+    <div class="itile-{{ a }} col-sm card text-center p-5 mx-1" style="background-color:{{ hex_palette[0][a] }}; color: {{ hex_palette[1][a] }}">
       <blockquote class="blockquote mb-0">
-      <p>{{hex_palette[a]}}</p>
-      <footer class="blockquote-footer">
-        <small>
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
+      <p>{{hex_palette[0][a]}}</p>
+<!--      <footer class="blockquote-footer">-->
+<!--        <small>-->
+<!--          Someone famous in <cite title="Source Title">Source Title</cite>-->
+<!--        </small>-->
+<!--      </footer>-->
     </blockquote>
     </div>
     {% endfor %}
@@ -25,14 +30,14 @@ Result
 <div class="container">
   <div class="row mx-1 my-2">
     {% for a in range(5, 10) %}
-    <div class="col-sm card text-white text-center p-5 mx-1" style="background-color:{{hex_palette[a]}}">
+    <div class="col-sm card text-center p-5 mx-1" style="background-color:{{ hex_palette[0][a] }}; color: {{ hex_palette[1][a] }}">
       <blockquote class="blockquote mb-0">
-      <p>{{hex_palette[a]}}</p>
-      <footer class="blockquote-footer">
-        <small>
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
+      <p>{{hex_palette[0][a]}}</p>
+<!--      <footer class="blockquote-footer">-->
+<!--        <small>-->
+<!--          Someone famous in <cite title="Source Title">Source Title</cite>-->
+<!--        </small>-->
+<!--      </footer>-->
     </blockquote>
     </div>
     {% endfor %}

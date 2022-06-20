@@ -41,7 +41,9 @@ def process(sample, advanced: bool):
         rgb_10c = adv_filter(colours)
     else:
         rgb_10c = basic(colours)
-    argb_10c = abs(rgb_10c-[[255, 255, 255]])
+    inv = abs(rgb_10c - [[255, 255, 255]])
+    # I should replace colours in the middle, i.e. when all 3 rgb values are close to each other
+    argb_10c = [abs(rgb_10c - [[90, 90, 90]])[_] if np.allclose(inv[_], rgb_10c[_], atol=30) else inv[_] for _ in range(10)]
     # now we should convert from rgb to hex and get a list of 3
     # just wanna play with format options in, I do know that there is a built-in hex converter
     hex_10c = ['#' + "".join(f'{c:02x}' for c in rgb3) for rgb3 in rgb_10c]
@@ -53,3 +55,5 @@ def fetch_process(path: str, advanced: bool):
     img = Image.open(path)
     # img.show()
     return process(img, advanced)
+
+# fetch_process('kitty.jpg', advanced=True)
