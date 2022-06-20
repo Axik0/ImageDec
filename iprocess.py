@@ -1,9 +1,6 @@
 from PIL import Image
 import numpy as np
 
-img = Image.open("kitty.jpg")
-# img.show()
-
 
 def adv_filter(cls):
     """we fill our 10-colour palette but skip ~similar adjacent rgb colors (differ <= thr componentwise) """
@@ -29,7 +26,7 @@ def basic(cls):
     return cls[:10]
 
 
-def image_process(sample):
+def process(sample, advanced: bool):
     img_arr = np.array(sample)
     # extract all the colors values,position (2D matrix) doesn't matter anymore=>cast it into (dimX*dimY,3)-shaped array
     img_colors = img_arr.reshape((-1, 3))
@@ -40,7 +37,10 @@ def image_process(sample):
     indices_by_occurrence = np.argsort(-occurrence)
     # shuffle 1st array with those and extract first 10 colours
     colours = color[indices_by_occurrence]
-    rgb_10c = adv_filter(colours)
+    if advanced:
+        rgb_10c = adv_filter(colours)
+    else:
+        rgb_10c = basic(colours)
     argb_10c = abs(rgb_10c-[[255, 255, 255]])
     # now we should convert from rgb to hex and get a list of 3
     # just wanna play with format options in, I do know that there is a built-in hex converter
@@ -48,4 +48,8 @@ def image_process(sample):
     ahex_10c = ['#' + "".join(f'{c:02x}' for c in rgb3) for rgb3 in argb_10c]
     return hex_10c, ahex_10c
 
-print(image_process(img))
+
+def fetch_process(path: str, advanced: bool):
+    img = Image.open(path)
+    # img.show()
+    return process(img, advanced)

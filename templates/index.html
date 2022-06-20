@@ -12,6 +12,13 @@ ImageDecc
     <h4 class="card-title">Image processing</h4>
     <p class="card-text">This web application generates a palette of 10 most frequent colours from your image</p>
     <a href="{{ url_for('result') }}" class="btn btn-primary">Load an image</a>
+
+      <form method = "POST"
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+      </form>
+
   </div>
   <div class="card-footer text-muted">
   </div>
