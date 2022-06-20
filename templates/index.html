@@ -1,0 +1,20 @@
+{% extends 'custombase.html' %}
+
+{% block title %}
+ImageDecc
+{% endblock %}
+
+{% block content %}
+<div class="card text-center">
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">Image processing</h4>
+    <p class="card-text">This web application generates a palette of 10 most frequent colours from your image</p>
+    <a href="{{ url_for('result') }}" class="btn btn-primary">Load an image</a>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
+{{ super() }}
+{% endblock %}
